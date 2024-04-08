@@ -4,6 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Support\Carbon;
 
 class Kernel extends ConsoleKernel
 {
@@ -13,7 +14,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         // $schedule->command('backup:clean')->daily()->at('01:00');
-        $schedule->command('backup:run')->daily()->at('18:10');
+        $schedule->call('\App\Http\Controllers\SchedulerController@fisio')->daily()->at('22:00');
+        $schedule->command('backup:run')->daily()->at('23:00');
     }
 
     /**
